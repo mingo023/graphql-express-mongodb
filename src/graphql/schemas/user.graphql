@@ -1,0 +1,24 @@
+# import EventItem from "event.graphql"
+type User {
+  _id: ID!
+  email: String!
+  password: String
+  events: [EventItem]!
+}
+
+input InputUser {
+  name: String!
+  email: String!
+  password: String!
+  confirmPassword: String!
+}
+
+type Query {
+  userItems(keyword: String): User!
+}
+
+type Mutation {
+  createUserItem(user: InputUser): User!
+  updateUserItem(_id: ID!, user: InputUser): User!
+  deleteUserItem(_id: ID!): String!
+}

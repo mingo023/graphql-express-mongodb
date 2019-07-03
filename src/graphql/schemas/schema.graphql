@@ -1,0 +1,3 @@
+# import * from "scalar-type.graphql"
+# import Query.*, Mutation.* from "event.graphql"
+# import Query.*, Mutation.* from "user.graphql"
