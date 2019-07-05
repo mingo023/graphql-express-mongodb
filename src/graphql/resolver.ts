@@ -21,7 +21,7 @@ export function getResolver(): Resolver {
 
   const mutations = readdirSync(resolve('src/graphql/resolvers/mutations'));
   mutations.forEach(mutation => {
-    const fileName = resolve(__dirname, 'resolvers/queries', mutation);
+    const fileName = resolve(__dirname, 'resolvers/mutations', mutation);
     const module = require(fileName);
 
     resolvers.Mutation = {

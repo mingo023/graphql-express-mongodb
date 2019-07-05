@@ -1,7 +1,7 @@
-# import User from "user.graphql"
+# import UserItem from "user.graphql"
 type EventItem {
   _id: ID!
-  user: User!
+  user: UserItem!
   title: String!
   description: String!
   price: Float!

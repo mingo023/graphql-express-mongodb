@@ -9,6 +9,7 @@ export default async function connect(): Promise<void> {
   await mongoose.connect(process.env.MONGO_URI, {
     keepAlive: true,
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   });
+  mongoose.set('useFindAndModify', false);
 }

@@ -1,9 +1,17 @@
 # import EventItem from "event.graphql"
-type User {
+type UserItem {
   _id: ID!
+  name: String!
   email: String!
   password: String
   events: [EventItem]!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type ResponseLogin {
+  user: UserItem
+  token: String
 }
 
 input InputUser {
@@ -13,12 +21,28 @@ input InputUser {
   confirmPassword: String!
 }
 
+input InputUpdateUser {
+  name: String
+  email: String
+}
+
+input InputSearchUser {
+  name: String
+  email: String
+}
+
+input InputUserLogin {
+  email: String!
+  password: String!
+}
+
 type Query {
-  userItems(keyword: String): User!
+  userItems(user: InputSearchUser): [UserItem]!
+  userLogin(userInput: InputUserLogin): ResponseLogin
 }
 
 type Mutation {
-  createUserItem(user: InputUser): User!
-  updateUserItem(_id: ID!, user: InputUser): User!
+  createUserItem(user: InputUser): UserItem!
+  updateUserItem(_id: ID!, user: InputUpdateUser): UserItem!
   deleteUserItem(_id: ID!): String!
 }
