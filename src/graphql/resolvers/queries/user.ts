@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../../../models';
 import { IUser } from '../../../models/user-model';
+import { AuthenticationError, ForbiddenError } from 'apollo-server-core';
 
 type InputSearchUser = {
   name: string;
@@ -16,6 +17,10 @@ type InputLogin = {
 type ResponseLogin = {
   user: IUser;
   token: string;
+};
+
+type ContextGraph = {
+  user: IUser;
 };
 
 export async function userItems(
@@ -57,6 +62,26 @@ export async function userLogin(
       user,
       token,
     };
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+export async function userItem(
+  _: any,
+  { _id }: { _id: string },
+  context: ContextGraph
+): Promise<IUser> {
+  if (!context.user) {
+    throw new AuthenticationError('No auth token');
+  }
+
+  if (context.user._id !== _id) {
+    throw new ForbiddenError('You dont have permisson to access.');
+  }
+
+  try {
+    return await User.findById(_id).lean();
   } catch (err) {
     throw new Error(err);
   }

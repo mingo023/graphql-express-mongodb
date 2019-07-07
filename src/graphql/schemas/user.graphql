@@ -38,7 +38,8 @@ input InputUserLogin {
 
 type Query {
   userItems(user: InputSearchUser): [UserItem]!
-  userLogin(userInput: InputUserLogin): ResponseLogin
+  userLogin(userInput: InputUserLogin): ResponseLogin!
+  userItem(_id: ID!): UserItem
 }
 
 type Mutation {

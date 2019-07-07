@@ -30,10 +30,8 @@ const server = new ApolloServer({
 
     try {
       const user = await handleToken(token);
-      if (!user) {
-        throw new AuthenticationError('your request must have token');
-      }
-      return null;
+
+      return { user };
     } catch (err) {
       return err;
     }

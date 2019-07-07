@@ -8,7 +8,7 @@ export default async (token: string) => {
 
     const isValidToken = token.indexOf('Bearer') === 0;
     if (!isValidToken) {
-      throw 'Invalid token';
+      return null;
     }
 
     const pureToken = token.split(' ')[1];
