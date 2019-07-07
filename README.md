@@ -7,6 +7,8 @@
 1. Fork this repo to your local
 2. Run `npm`
 - `npm install` to install all dependenices
+- Set up your `env`
 - `npm run dev` to run app
+
 3. Enjoy
  
